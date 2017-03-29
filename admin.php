@@ -102,6 +102,13 @@
     </form>
 </div>
 
+	<div id="purchaseAllFlights">
+    <h2>Customer Who Purchased All Flights</h2>
+    <form method="POST" action= <?php__FILE__;?> >
+       <button type="submit" value="submit" name="purchaseAllFlights">Search</button>
+    </form>
+</div>
+	
 </td><td>
 
 <?php
@@ -164,7 +171,34 @@
     	$query = "select * from modelinfo where model = $model";
 
     }
-    if (array_key_exists('viewModelInfo', $_POST)) {
+	
+if (array_key_exists('purchaseAllFlights', $_POST)) {
+    $query = "select p.pid, p.pname from passenger p where not exists ((select f.fno, f.dateflight from flight f) minus (select t.fno, t.dateflight from ticket t where t.pid = p.pid))";
+    }
+
+	  if (array_key_exists('purchaseAllFlights', $_POST)) {
+    
+    require('sqlfn.php');
+    $username = $_COOKIE['username'];
+    $password = $_COOKIE['password'];
+    $db_conn  = dbConn($username, $password);
+    $result   = executePlainSQL($query);
+    
+    OCICommit($db_conn);
+    dbDisconn($db_conn);
+    
+    echo '<table border="1"><thead>' . '<td><b>Passenger ID</b></td>' . '<td><b>Name</b></td>' . '</thead>';
+    
+    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+        echo "<tr  align='center'>";
+        echo "<td>" . $row[0] . "</td>";
+        echo "<td>" . $row[1] . "</td>";
+        echo "</tr>";
+    }
+    
+    echo '</table>';
+    
+} else if (array_key_exists('viewModelInfo', $_POST)) {
     	require('sqlfn.php');
     	$username = $_COOKIE['username'];
     	$password = $_COOKIE['password'];
