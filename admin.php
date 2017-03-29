@@ -32,7 +32,7 @@
                 <td><input type="input" name="model" required></td>
             </tr>
         <tr>
-                <td><button type="submit" value="submit" name="viewModelInfo">View Bruh</button></td>
+                <td><button type="submit" value="submit" name="viewModelInfo">View</button></td>
             </tr>
         </table>
     </form>
