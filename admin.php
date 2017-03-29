@@ -104,7 +104,7 @@
 
 	<div id="purchaseAllFlights">
     <h2>Customer Who Purchased All Flights</h2>
-    <form method="POST" action= <?php__FILE__;?> >
+    <form method="POST" action= <?php __FILE__ ?> >
        <button type="submit" value="submit" name="purchaseAllFlights">Search</button>
     </form>
 </div>
