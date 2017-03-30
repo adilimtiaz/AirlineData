@@ -157,6 +157,10 @@
     	$regno = "'".$_POST['regno']."'";
 
 
+        $hasRequiredFields = true;
+	$print = false;
+
+
 
     	$query = "insert into flight values($fno, $dateflight, $deptime, $depacode, $arrdate, $arrtime, $arracode,$regno)";
 
@@ -172,11 +176,12 @@
 
     }
 	
-if (array_key_exists('purchaseAllFlights', $_POST)) {
+    if (array_key_exists('purchaseAllFlights', $_POST)) {
     $query = "select p.pid, p.pname from passenger p where not exists ((select f.fno, f.dateflight from flight f) minus (select t.fno, t.dateflight from ticket t where t.pid = p.pid))";
     }
 
-	  if (array_key_exists('purchaseAllFlights', $_POST)) {
+    
+if (array_key_exists('purchaseAllFlights', $_POST)) {
     
     require('sqlfn.php');
     $username = $_COOKIE['username'];
@@ -237,7 +242,10 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
 
     OCICommit($db_conn);
     dbDisconn($db_conn);
-        
+       
+
+    if ($print){
+
      echo '<table border="1"><thead>'.
           '<td><b>Flight No.</b></td>'.
           '<td><b>Departure Airport</b></td>'.
@@ -245,12 +253,8 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
           '<td><b>Departure Date</b></td>'.
           '<td><b>Arrival Date</b></td>'.
           '</thead>';
-    if ($print != true){
-        return;
-    }
 
-
-    while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+	while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
         echo "<tr  align='center'>";
         echo "<td>" . $row[0] . "</td>";
         echo "<td>" . $row[3] . "</td>";
@@ -258,9 +262,12 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
         echo "<td>" . $row[1] . "</td>";
         echo "<td>" . $row[4] . "</td>";
         echo "</tr>";
-    }      
+    	}      
     
         echo '</table>';
+
+    }   
+
     } 
 
 
