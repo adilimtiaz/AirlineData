@@ -33,9 +33,11 @@ function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL com
 		$e = oci_error($statement); // For OCIExecute errors pass the statementhandle
 		echo "<script>alert('SQL Execution Error " . $e['message'] . "')</script>";
 		$success = False;
-	} else {
-
 	}
+
+	if (strcmp(strtolower(substr($cmdstr, 0, 6)), "select") != 0)
+		echo "<script>alert('" . oci_num_rows($statement) . " rows affected')</script>";
+
 	return $statement;
 
 }
