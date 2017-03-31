@@ -133,6 +133,37 @@ p {
     </form>
 </div>
 
+<div id="NestedAgg">
+    <h3>Search For a Reservation</h3>
+    <form method="POST" action= <?php __FILE__ ?> >
+        <table>
+	    <tr>
+		    Find the 
+                <select name="s1">
+				<option value="AVG">Average</option>
+				<option value="MAX">Maximum</option>
+				<option value="MIN">Minimum</option>
+				<option value="COUNT">Unique count</option>
+				<option value="SUM">Total</option>
+			</select>
+			of the 
+			<select name="s2">
+				<option value="AVG">Average</option>
+				<option value="MAX">Maximum</option>
+				<option value="MIN">Minimum</option>
+				<option value="COUNT">Unique count</option>
+				<option value="SUM">Total</option>
+			</select>
+			
+		    prices for each flight number and date grouping
+            </tr>
+			<tr>
+			 <td><button type="submit" value="submit" name="NestedAgg" class="btn btn-primary btn-md">Search</button></td>
+			 </tr>
+        </table>
+    </form>
+</div>
+
 
 
 <div id="reservationSearch">
@@ -203,6 +234,11 @@ p {
 		
     }
 	
+	 if (array_key_exists('NestedAgg', $_POST)) {
+		$agg1 = $_POST['s1'];  // Storing Selected Value In Variable
+		$agg2 = $_POST['s2'];
+		$query="select fno, $agg1($agg2) as $agg1$agg2 from (select fno, dateflight, $agg2(price) as $agg2 from ticket group by fno, dateflight) group by fno";
+    }
 	
 	if ($hasAtLeastOneField) {
 		require('sqlfn.php');
@@ -295,6 +331,74 @@ p {
 		}
 
     }	
+	
+	else if (array_key_exists('NestedAgg', $_POST)) {
+    	require('sqlfn.php');
+    	$username = $_COOKIE['username'];
+    	$password = $_COOKIE['password'];
+   		$db_conn = dbConn($username, $password);
+		$result = executePlainSQL($query);
+		OCICommit($db_conn);
+    	dbDisconn($db_conn);
+		
+		$agg1 = $_POST['s1'];  // Storing Selected Value In Variable
+		$agg2 = $_POST['s2'];
+        $str="";
+		echo "$query";
+		echo '<table border="1"><thead>';
+        echo '<td><b>FlightNo</b></td>';
+		if($agg1=="AVG"){
+			$str.="Average ";
+		}
+		
+		else if($agg1=="MAX"){
+			$str.="Maximum ";
+		}
+		
+		else if($agg1=="MIN"){
+			$str.="Minimum ";
+		}
+		else if($agg1=="COUNT"){
+			$str.="Unique ";
+		}
+		else if($agg1=="SUM"){
+			$str.="Sum ";
+		}
+		
+		if($agg2=="AVG"){
+			$str.="Average ";
+		}
+		
+		else if($agg2=="MAX"){
+			$str.="Maximum ";
+		}
+		
+		else if($agg2=="MIN"){
+			$str.="Minimum ";
+		}
+		else if($agg2=="COUNT"){
+			$str.="Unique ";
+		}
+		else if($agg2=="SUM"){
+			$str.="Sum ";
+		}
+		
+		$str.=" Ticket Price";
+		
+		echo '<td><b>';
+		echo "$str";
+		echo '</b></td>';
+		 echo '</thead>';
+		
+		 while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+        	echo "<tr align = 'center'>";
+			echo "<td>" . substr($row[0],0,8) . "</td>";
+			echo "<td>" . substr($row[1],0,8) . "</td>";
+        	echo "</tr>";
+        }
+        echo '</table>';
+	}
+			
 ?>
 
 </td></tr>
