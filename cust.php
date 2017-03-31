@@ -95,6 +95,43 @@ p {
     </form>
     </div>
    
+<div id="TicketAgg">
+    <h2>View Ticket info by Flight Number and Date</h2>
+    <form method="POST" action= <?php __FILE__ ?> >
+        <table>
+        <tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="AVG(price)">
+				<label for="cbox1">Find the average ticket prices</label></td>
+            </tr>
+		<tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="MAX(price)">
+				<label for="cbox2">Find most expensive tickets</label></td>
+            </tr>
+			<tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="MIN(price)">
+				<label for="cbox3">Find most expensive tickets</label></td>
+            </tr>
+			<tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="COUNT(price)">
+				<label for="cbox4">Find number of unique ticket prices for flight</label></td>
+            </tr>
+			<tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="COUNT(price)">
+				<label for="cbox4">Find sum of all ticket prices for flight</label></td>
+            </tr>
+
+			
+        <tr>
+                <td><button type="submit" value="submit" name="TicketAgg">View</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 
 
@@ -150,6 +187,7 @@ p {
 		$query = "select f.fno, f.dateflight, deptime, depacode, arrdate, arrtime, arracode, regno from flight f, (select fno, dateflight from ticket where tid = $tid and pid = $pid) k where f.fno = k.fno and f.dateflight = k.dateflight";
 		
 	}
+	
 	if ($hasAtLeastOneField) {
 		require('sqlfn.php');
 		$username = $_COOKIE['username'];
