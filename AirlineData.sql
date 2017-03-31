@@ -79,6 +79,7 @@ CREATE TABLE Ticket
 	fno CHAR(4) NOT NULL,
 	dateflight DATE NOT NULL,
 	pid INTEGER NOT NULL,
+	price INTEGER NOT NULL,
 	PRIMARY KEY (tid),
 	FOREIGN KEY (fno, dateflight) REFERENCES Flight ON DELETE CASCADE,
 	FOREIGN KEY (pid) REFERENCES Passenger);
@@ -249,45 +250,45 @@ values('0011', 'F007', '2017-04-21');
 
 
 insert into Ticket
-values('T001', 'F000', '2017-05-09', '0001');
+values('T001', 'F000', '2017-05-09', '0001', 300);
 insert into Ticket
-values('T002', 'F000', '2017-05-09', '0002');
+values('T002', 'F000', '2017-05-09', '0002', 301);
 insert into Ticket
-values('T003', 'F000', '2017-05-09', '0003');
+values('T003', 'F000', '2017-05-09', '0003', 302);
 insert into Ticket
-values('T004', 'F001', '2017-04-28', '0001');
+values('T004', 'F001', '2017-04-28', '0001', 303);
 insert into Ticket
-values('T005', 'F001', '2017-04-28', '0002');
+values('T005', 'F001', '2017-04-28', '0002', 304);
 insert into Ticket
-values('T006', 'F001', '2017-04-28', '0004');
+values('T006', 'F001', '2017-04-28', '0004', 305);
 insert into Ticket
-values('T007', 'F002', '2017-04-21', '0005');
+values('T007', 'F002', '2017-04-21', '0005', 306);
 insert into Ticket
-values('T008', 'F003', '2017-04-21', '0008');
+values('T008', 'F003', '2017-04-21', '0008', 307);
 insert into Ticket
-values('T009', 'F007', '2017-04-21', '0002');
+values('T009', 'F007', '2017-04-21', '0002', 308);
 insert into Ticket
-values('T010', 'F007', '2017-04-21', '0003');
+values('T010', 'F007', '2017-04-21', '0003', 309);
 insert into Ticket
-values('T011', 'F007', '2017-04-21', '0006');
+values('T011', 'F007', '2017-04-21', '0006', 300);
 insert into Ticket
-values('T012', 'F007', '2017-04-21', '0008');
+values('T012', 'F007', '2017-04-21', '0008', 301);
 insert into Ticket
-values('T013', 'F008', '2017-04-21', '0008');
+values('T013', 'F008', '2017-04-21', '0008', 302);
 insert into Ticket
-values('T014', 'F008', '2017-04-21', '0011');
+values('T014', 'F008', '2017-04-21', '0011', 303);
 insert into Ticket
-values('T015', 'F004', '2017-04-02', '0009');
+values('T015', 'F004', '2017-04-02', '0009', 304);
 insert into Ticket
-values('T016', 'F004', '2017-04-02', '0010');
+values('T016', 'F004', '2017-04-02', '0010', 305);
 insert into Ticket
-values('T017', 'F004', '2017-04-02', '0012');
+values('T017', 'F004', '2017-04-02', '0012', 306);
 insert into Ticket
-values('T018', 'F005', '2017-04-10', '0007');
+values('T018', 'F005', '2017-04-10', '0007', 307);
 insert into Ticket
-values('T019', 'F005', '2017-04-10', '0004');
+values('T019', 'F005', '2017-04-10', '0004', 308);
 insert into Ticket
-values('T020', 'F006', '2017-04-11', '0009');
+values('T020', 'F006', '2017-04-11', '0009', 309);
 
 
 
