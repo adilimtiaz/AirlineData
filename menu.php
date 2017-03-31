@@ -1,6 +1,6 @@
 <?php
-    error_reporting(-1);
-    ini_set('display_errors',1);
+    //error_reporting(-1);
+    //ini_set('display_errors',1);
     if (!isset($_COOKIE['username'], $_COOKIE['password'])) {
     	setcookie('username', htmlentities($_POST['username']));
    	setcookie('password', htmlentities($_POST['password']));
@@ -48,9 +48,7 @@ h3 {
     <li><a href="admin.php">Admin</a></li>
 </ul>
  <ul class="nav navbar-nav navbar-right">
-      
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+      <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
 </nav>
 

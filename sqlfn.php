@@ -29,7 +29,7 @@ function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL com
 
 	$r = OCIExecute($statement, OCI_DEFAULT);
 	if (!$r) {
-		echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
+		//echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
 		$e = oci_error($statement); // For OCIExecute errors pass the statementhandle
 		echo "<script>alert('SQL Execution Error " . $e['message'] . "')</script>";
 		$success = False;

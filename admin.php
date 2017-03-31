@@ -33,9 +33,7 @@ p {
     <li class="active"><a href="admin.php">Admin</a></li>
 </ul>
  <ul class="nav navbar-nav navbar-right">
-      
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+      <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
     </div>
 </nav>
@@ -211,8 +209,8 @@ p {
 </td><td>
 
 <?php
-    error_reporting(-1);
-    ini_set('display_errors',1);
+    //error_reporting(-1);
+    //ini_set('display_errors',1);
     date_default_timezone_set('UTC');
     $hasRequiredFields = false;
     $print = true;
@@ -262,9 +260,7 @@ p {
             foreach($_POST['check_list'] as $check) {
                 $selected.=(string)$check.",";
             }
-            echo "Fuck you $selected" ;
             $selected=chop($selected,",");
-            echo "Fuck your mom $selected";
             $query= "select company,".$selected." from modelinfo group by company";
         }
     }
@@ -284,7 +280,7 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
     OCICommit($db_conn);
     dbDisconn($db_conn);
     
-    echo '<table border="1"><thead>' . '<td><b>Passenger ID</b></td>' . '<td><b>Name</b></td>' . '</thead>';
+    echo '<table border="3"><thead>' . '<td><b>Passenger ID</b></td>' . '<td><b>Name</b></td>' . '</thead>';
     
     while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
         echo "<tr  align='center'>";
@@ -303,7 +299,7 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
         $result = executePlainSQL($query);
         OCICommit($db_conn);
         dbDisconn($db_conn);
-        echo '<table border="1"><thead>'.
+        echo '<table border="3"><thead>'.
         '<td><b>Model No.</b></td>'.
         '<td><b>Capacity</b></td>'.
         '</thead>';
@@ -328,7 +324,7 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
         OCICommit($db_conn);
         dbDisconn($db_conn);
         $count=0;
-        echo '<table border="1"><thead>';
+        echo '<table border="3"><thead>';
         echo '<td><b>Company</b></td>';
         
             foreach($_POST['check_list'] as $check) {
@@ -366,7 +362,7 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
         echo '</table>';
         }
         else{
-            echo '<table border="1"><thead>';
+            echo '<table border="3"><thead>';
             echo '<td><b>Company</b></td>';
             echo '</thead>';
              echo '</table>';
@@ -384,7 +380,7 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
     dbDisconn($db_conn);
        
     if ($print){
-     echo '<table border="1"><thead>'.
+     echo '<table border="3"><thead>'.
           '<td><b>Flight No.</b></td>'.
           '<td><b>Departure Airport</b></td>'.
           '<td><b>Arrival Airport</b></td>'.

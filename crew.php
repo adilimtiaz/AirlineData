@@ -33,9 +33,7 @@ p {
     <li><a href="admin.php">Admin</a></li>
 </ul>
  <ul class="nav navbar-nav navbar-right">
-      
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+      <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
     </ul>
     </div>
 </nav>
@@ -84,8 +82,8 @@ p {
 </td><td>
 
 <?php
-	error_reporting(-1);
-	ini_set('display_errors',1);
+	//error_reporting(-1);
+	//ini_set('display_errors',1);
 	date_default_timezone_set ('UTC');
 	$hasRequiredFields = false;
     	if (array_key_exists('searchFltAssnSubmit', $_POST)) {
@@ -111,7 +109,7 @@ p {
 		OCICommit($db_conn);
 		dbDisconn($db_conn);
 		
-		echo '<table border="1"><thead>'.
+		echo '<table border="3"><thead>'.
 			'<td><b>Flight No.</b></td>'.
 			'<td><b>Departure Airport</b></td>'.
 			'<td><b>Arrival Airport</b></td>'.
@@ -131,7 +129,7 @@ p {
 		echo '</table>';
 		if (array_key_exists('searchPassSubmit', $_POST)) {
 					
-			echo '</br><table border="1"><thead>'.
+			echo '</br><table border="3"><thead>'.
 				'<td><b>Passenger ID</b></td>'.
 				'<td><b>Name</b></td>'.
 				'<td><b>Ticket ID</b></td>'.
