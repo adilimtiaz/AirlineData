@@ -1,44 +1,49 @@
 <?php
-	error_reporting(-1);
-	ini_set('display_errors',1);
-	setcookie('username', htmlentities($_POST['username']));
-	setcookie('password', htmlentities($_POST['password']));
+    error_reporting(-1);
+    ini_set('display_errors',1);
+    setcookie('username', htmlentities($_POST['username']));
+    setcookie('password', htmlentities($_POST['password']));
 ?>
-
 <html>
 
-
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <head>
 <style>
-.container {
-    
-    background: rgba(150, 190, 225, 0.35);
+body, html {
+    height: 100%;
+    margin: 0;
 }
 
-h2 { 
-    color: #111; font-family: 'Georgia'
+.bg {
+    background-image: url("plane.jpg");
+    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
-p {
-    color: #111; font-family: 'Georgia'
+h1 { 
+    color: #ffffff; font-family: 'Georgia'
 }
+
+h3 {
+    color: #ffffff; font-family: 'Georgia'
+}
+.navbar {
+    margin-bottom: 0;
+}
+
 </style>
 </head>
 <body>
-
-<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top= "200">
+<nav class="navbar navbar-inverse" data-spy="affix" data-offset-top= "100">
+<div class="container-fluid">
   <ul class="nav navbar-nav">
+
     <li class ="active"><a href="#">Home</a></li>
     
-    <li><a href="#">Browse Flights</a></li>
-    <li><a href="#">Customers</a></li>
-    <li><a href="#">Flight Crew</a></li>
-    <li><a href="#">Admin</a></li>
+    <li><a href="cust.php">Customers</a></li>
+    <li><a href="crew.php">Flight Crew</a></li>
+    <li><a href="admin.php">Admin</a></li>
 </ul>
  <ul class="nav navbar-nav navbar-right">
       
@@ -47,44 +52,42 @@ p {
     </ul>
 </nav>
 
-
+<div class="bg">
 <div class="container">
-<center>
-  <h2>Welcome to our flight booking system</h2>
-  <br><i><p>Providing services for customers, flight crew, and administrators</p></i>
+<center><br><br><br><br><br>
+  <h1>Welcome to our flight booking system</h1>
+  <br><i><h3>Providing services for customers, flight crew, and administrators</h3></i>
 </center>
-
 <center>
 <br>
-<img src="https://www.freewebheaders.com/wordpress/wp-content/gallery/sunsets/fabulous-sunset-plane-header.jpg" class=img-circle width=800 height=200>
+
 <div class= "row">
 <div class="col-sm-4">
+<br><br><br>
     <form>
-       <br><br>
+       
        <center> <button type="submit" formaction="cust.php" class="btn btn-primary btn-lg">Customer</button></center>
     </form>
     </div>
     <div class="col-sm-4">
     <form>
-    <br><br>
+    <br><br><br>
        <center> <button type="submit" formaction="crew.php" class= "btn btn-primary btn-lg">Flight Crew</button></center>
     </form>
     </div>
 
     <div class="col-sm-4">
     <form>
-    <br><br>
+    <br><br><br>
        <center> <button type="submit" formaction="admin.php" class="btn btn-primary btn-lg">Administrator</button> </center>
-       <br><br><br><br><br><br><br><br><br><br><br><br><br>
+       <br><br><br>
     </form>
     </div>
     </div>
     </center>
     </div>
     </div>
-
+</div>
 
 </body>
-
-
 </html>

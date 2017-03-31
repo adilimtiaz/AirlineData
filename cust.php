@@ -2,19 +2,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <head>
 <style>
 .container {
     
     background: rgba(150, 190, 225, 0.35);
 }
-
 h3 { 
     color: #111; font-family: 'Georgia'
 }
-
 p {
     color: #111; font-family: 'Tahoma'
 }
@@ -24,12 +20,12 @@ p {
 <body>
 
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top= "200">
+<div class = "containter-fluid">
   <ul class="nav navbar-nav">
     <li><a href="#">Home</a></li>
-    <li><a href="#">Browse Flights</a></li>
-    <li class="active"><a href="#">Customers</a></li>
-    <li><a href="#">Flight Crew</a></li>
-    <li><a href="#">Admin</a></li>
+    <li class="active"><a href="cust.php">Customers</a></li>
+    <li><a href="crew.php">Flight Crew</a></li>
+    <li><a href="admin.php">Admin</a></li>
 </ul>
  <ul class="nav navbar-nav navbar-right">
       
@@ -39,8 +35,6 @@ p {
 </nav>
 
 
-
-<!--there was a <table> here-->
 <tr valign="top"><td width="40%">
 <div class="container">
 <div id="flightSearch">
@@ -51,7 +45,8 @@ p {
         <table>
 	    <tr>
              <td><p>Departure Airport</td>
-                <td><input type="input" name="depacode"></td>
+                <td><label for="input-id" class="sr-only">A000</label>
+                <input type="input" name="depacode" placeholder="A000" id="input-id"></td>
             </tr>
 
 
@@ -62,7 +57,8 @@ p {
             </tr>
 	    <tr>
                 <td><p>Arrival Airport</td>
-                <td><input type="input" name="arracode"></td>
+                <td><label for="input-id" class="sr-only">A000</label>
+                <input type="input" name="arracode" placeholder="A000" id="input-id"></td>
             </tr>
             <tr>
                 <td><p>Arrival Date</td>
@@ -70,7 +66,8 @@ p {
             </tr>
             <tr>
                 <td><p>Number of Passengers</td>
-                <td><input type="number" name="numPass"></td>
+                <td><label for="input-id" class="sr-only">000</label>
+                <input type="number" name="numPass" placeholder="000" id="input-id"></td>
             </tr>
             <tr>
                 <td><button type="submit" value="submit" name="searchDateSubmit" class="btn btn-primary btn-md">Search</button></td>
@@ -82,7 +79,8 @@ p {
         <table>
 	    <tr>
                 <td><p>Flight Number</td>
-                <td><input type="input" name="fno"></td>
+                <td><label for="input-id" class="sr-only">F000</label>
+                <input type="input" name="fno" placeholder="F000" id="input-id"></td>
             </tr>
             <tr>
                 <td><p>Departure Date</td>
@@ -96,7 +94,7 @@ p {
     </div>
    
 <div id="TicketAgg">
-    <h2>View Ticket info by Flight Number and Date</h2>
+    <h3>View Ticket info by Flight Number and Date</h3>
     <form method="POST" action= <?php __FILE__ ?> >
         <table>
         <tr>
@@ -127,7 +125,7 @@ p {
 
 			
         <tr>
-                <td><button type="submit" value="submit" name="TicketAgg">View</button></td>
+                <td><button type="submit" value="submit" name="TicketAgg" class="btn btn-primary btn-md">View</button></td>
             </tr>
         </table>
     </form>
@@ -172,11 +170,13 @@ p {
         <table>
 	    <tr>
                 <td><p>Ticket ID</td>
-                <td><input type="input" name="tid"></td>
+                <td><label for="input-id" class="sr-only">T001</label>
+                <input type="input" name="tid" placeholder="T001" id="input-id"></td>
             </tr>
 	    <tr>
                 <td><p>Passenger ID</td>
-                <td><input type="input" name="pid"></td>
+                <td><label for="input-id" class="sr-only">0001</label>
+                <input type="input" name="pid" placeholder="0001" id="input-id"></td>
             </tr>
             <tr>
                 <td><button type="submit" value="submit" name="searchResSubmit" class="btn btn-primary btn-md">Search</button></td>
@@ -268,7 +268,6 @@ p {
 	
 		echo '</table>';
 	} 
-
     else if (array_key_exists('TicketAgg', $_POST)) {
     	require('sqlfn.php');
     	$username = $_COOKIE['username'];
@@ -276,7 +275,6 @@ p {
    		$db_conn = dbConn($username, $password);
     	if(!empty($_POST['check_list'])){
 		$result = executePlainSQL($query);
-
     	OCICommit($db_conn);
     	dbDisconn($db_conn);
         $count=0;
@@ -310,8 +308,6 @@ p {
 		
         echo '</thead>';
 		
-
-
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
         	echo "<tr align = 'center'>";
 			for($i=0;$i<=$count+1;$i++){
@@ -329,7 +325,6 @@ p {
 			 echo '</table>';
 		
 		}
-
     }	
 	
 	else if (array_key_exists('NestedAgg', $_POST)) {
