@@ -26,7 +26,7 @@ p {
 <nav class="navbar navbar-inverse" data-offset-top= "200">
 <div class="container-fluid">
   <ul class="nav navbar-nav">
-    <li><a href="#">Home</a></li>
+    <li><a href="menu.php">Home</a></li>
     
     <li><a href="cust.php">Customers</a></li>
     <li><a href="crew.php">Flight Crew</a></li>
@@ -169,7 +169,7 @@ p {
         <tr>
                 <td>Flight No.</td>
                 <td><label for="input-id" class="sr-only">F000</label>
-                <input type="input" name="fno" required placeholder="F000" id="input-id">></td>
+                <input type="input" name="fno" required placeholder="F000" id="input-id"></td>
             </tr>
         <tr>
                 <td>Departure Date</td>
@@ -202,7 +202,7 @@ p {
 </div>
 <div class="col-sm-2">
 <form>
-    <center> <button type="submit" formaction="cust.php" class= "btn btn-success btn-lg disabled">View as Admin</button></center></form>
+    <center> <button type="submit" class= "btn btn-success btn-lg disabled">View as Admin</button></center></form>
 </div>
 </div>
 </center>

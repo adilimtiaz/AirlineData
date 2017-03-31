@@ -27,7 +27,7 @@ p {
 <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top= "200">
 <div class="container-fluid">
   <ul class="nav navbar-nav">
-    <li><a href="#">Home</a></li>
+    <li><a href="menu.php">Home</a></li>
     <li><a href="cust.php">Customers</a></li>
     <li class="active"><a href="crew.php">Flight Crew</a></li>
     <li><a href="admin.php">Admin</a></li>
