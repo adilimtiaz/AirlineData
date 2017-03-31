@@ -112,7 +112,7 @@ p {
 			<tr>
                
                 <td><input type="checkbox" name="check_list[]" value="MIN(price)">
-				<label for="cbox3">Find most expensive tickets</label></td>
+				<label for="cbox3">Find least expensive tickets</label></td>
             </tr>
 			<tr>
                
@@ -121,8 +121,8 @@ p {
             </tr>
 			<tr>
                
-                <td><input type="checkbox" name="check_list[]" value="COUNT(price)">
-				<label for="cbox4">Find sum of all ticket prices for flight</label></td>
+                <td><input type="checkbox" name="check_list[]" value="SUM(price)">
+				<label for="cbox5">Find sum of all ticket prices for flight</label></td>
             </tr>
 
 			
@@ -161,6 +161,7 @@ p {
 	ini_set('display_errors',1);
 	date_default_timezone_set ('UTC');
 	$hasAtLeastOneField = false;
+	$hasRequiredFields=false;
     	if (array_key_exists('searchDateSubmit', $_POST)) {
 		$dDate = "'".strtoupper(date('Y-m-d', strtotime($_POST['dDate'])))."'";
 		$depacode = "'".$_POST['depacode']."'";
@@ -187,6 +188,21 @@ p {
 		$query = "select f.fno, f.dateflight, deptime, depacode, arrdate, arrtime, arracode, regno from flight f, (select fno, dateflight from ticket where tid = $tid and pid = $pid) k where f.fno = k.fno and f.dateflight = k.dateflight";
 		
 	}
+	 if (array_key_exists('TicketAgg', $_POST)) {
+    	if(!empty($_POST['check_list'])){
+			$selected="";
+			$hasRequiredFields=true;
+			foreach($_POST['check_list'] as $check) {
+				$selected.=(string)$check.",";
+			}
+			echo "Fuck you $selected" ;
+			$selected=chop($selected,",");
+			echo "Fuck your mom $selected";
+			$query= "select fno,dateflight,".$selected." from ticket group by fno,dateflight";
+		}
+		
+    }
+	
 	
 	if ($hasAtLeastOneField) {
 		require('sqlfn.php');
@@ -215,7 +231,70 @@ p {
 		}      
 	
 		echo '</table>';
-	}  
+	} 
+
+    else if (array_key_exists('TicketAgg', $_POST)) {
+    	require('sqlfn.php');
+    	$username = $_COOKIE['username'];
+    	$password = $_COOKIE['password'];
+   		$db_conn = dbConn($username, $password);
+    	if(!empty($_POST['check_list'])){
+		$result = executePlainSQL($query);
+
+    	OCICommit($db_conn);
+    	dbDisconn($db_conn);
+        $count=0;
+    	echo '<table border="1"><thead>';
+        echo '<td><b>FlightNo</b></td>';
+		echo '<td><b>Date</b></td>';
+		
+			foreach($_POST['check_list'] as $check) {
+				echo $check;
+				if($check=="AVG(price)"){
+			    echo '<td><b>Average Ticket Price</b></td>';
+				$count++;
+				}
+				if($check=="MAX(price)"){
+			    echo '<td><b>Maximum Ticket Price</b></td>';
+				$count++;
+				}
+				if($check=="MIN(price)"){
+			    echo '<td><b>Minimum Ticket Price</b></td>';
+				$count++;
+				}
+				if($check=="COUNT(price)"){
+					echo '<td><b>Unique Ticket Price</b></td>';
+					$count++;
+				}
+				if($check=="SUM(price)"){
+					echo '<td><b>Sum of Ticket Price</b></td>';
+					$count++;
+				}
+			}
+		
+        echo '</thead>';
+		
+
+
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+        	echo "<tr align = 'center'>";
+			for($i=0;$i<=$count+1;$i++){
+				echo "<td>" . $row[$i] . "</td>";
+			}
+        	echo "</tr>";
+        }
+        echo '</table>';
+		}
+		else{
+			echo '<table border="1"><thead>';
+			echo '<td><b>FlightNo</b></td>';
+			echo '<td><b>Date</b></td>';
+			echo '</thead>';
+			 echo '</table>';
+		
+		}
+
+    }	
 ?>
 
 </td></tr>
