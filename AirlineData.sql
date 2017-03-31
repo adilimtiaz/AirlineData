@@ -29,6 +29,7 @@ CREATE TABLE Airport_a
 CREATE TABLE ModelInfo
 	(model CHAR(3),
             capacity INTEGER,
+			company CHAR(20),
 	PRIMARY KEY (model));
 
 CREATE TABLE AirplaneModel
@@ -122,13 +123,13 @@ insert into Airport_a
 values ('A005');
 
 insert into ModelInfo
-values ('150', '100');
+values ('150', '100' , 'Boeing');
 insert into ModelInfo
-values ('200', '50');
+values ('200', '50', 'Boeing');
 insert into ModelInfo
-values ('140', '75');
+values ('140', '75', 'Airbus');
 insert into ModelInfo
-values ('100', '100');
+values ('100', '100', 'Airbus');
 
 insert into AirplaneModel
 values ('001', '150');
@@ -287,8 +288,6 @@ insert into Ticket
 values('T019', 'F005', '2017-04-10', '0004');
 insert into Ticket
 values('T020', 'F006', '2017-04-11', '0009');
-
-commit;
 
 
 
