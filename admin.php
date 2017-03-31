@@ -39,6 +39,39 @@
 </div>
 
 
+<div id="viewModelInfoByCompany">
+    <h2>View Model Info By Company</h2>
+    <form method="POST" action= <?php __FILE__ ?> >
+        <table>
+        <tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="AVG(capacity)">
+				<label for="cbox1">Find average capacity for company</label></td>
+            </tr>
+		<tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="MAX(capacity)">
+				<label for="cbox2">Find largest capacity for company</label></td>
+            </tr>
+			<tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="MIN(capacity)">
+				<label for="cbox3">Find smallest capacity for company</label></td>
+            </tr>
+			<tr>
+               
+                <td><input type="checkbox" name="check_list[]" value="COUNT(capacity)">
+				<label for="cbox4">Find number of unique capacities for company</label></td>
+            </tr>
+
+			
+        <tr>
+                <td><button type="submit" value="submit" name="viewModelInfoByCompany">View</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 <div id="addFlight">
     <h2>Add a Flight</h2>
     <form method="POST" action= <?php __FILE__ ?> >
@@ -176,6 +209,20 @@
 
     }
 	
+	if (array_key_exists('viewModelInfoByCompany', $_POST)) {
+    	if(!empty($_POST['check_list'])){
+			$selected="";
+			$hasRequiredFields=true;
+			foreach($_POST['check_list'] as $check) {
+				$selected.=(string)$check.",";
+			}
+			echo "Fuck you $selected" ;
+			$selected=chop($selected,",");
+			echo "Fuck your mom $selected";
+			$query= "select company,".$selected." from modelinfo group by company";
+		}
+    }
+	
     if (array_key_exists('purchaseAllFlights', $_POST)) {
     $query = "select p.pid, p.pname from passenger p where not exists ((select f.fno, f.dateflight from flight f) minus (select t.fno, t.dateflight from ticket t where t.pid = p.pid))";
     }
@@ -230,7 +277,67 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
         }
         echo '</table>';
 
-    } else
+    }
+	else if (array_key_exists('viewModelInfoByCompany', $_POST)) {
+    	require('sqlfn.php');
+    	$username = $_COOKIE['username'];
+    	$password = $_COOKIE['password'];
+   		$db_conn = dbConn($username, $password);
+    	if(!empty($_POST['check_list'])){
+		$result = executePlainSQL($query);
+
+    	OCICommit($db_conn);
+    	dbDisconn($db_conn);
+        $count=0;
+    	echo '<table border="1"><thead>';
+        echo '<td><b>Company</b></td>';
+		
+			foreach($_POST['check_list'] as $check) {
+				echo $check;
+				if($check=="AVG(capacity)"){
+			    echo '<td><b>Average Capacity</b></td>';
+				$count++;
+				}
+				if($check=="MAX(capacity)"){
+			    echo '<td><b>Maximum Capacity</b></td>';
+				$count++;
+				}
+				if($check=="MIN(capacity)"){
+			    echo '<td><b>Minimum Capacity</b></td>';
+				$count++;
+				}
+				if($check=="COUNT(capacity)"){
+					echo '<td><b>Count of unique Capacity</b></td>';
+					$count++;
+				}
+			}
+		
+        echo '</thead>';
+		
+
+        if ($print != true) {
+        	return;
+        }
+
+        while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
+        	echo "<tr align = 'center'>";
+			for($i=0;$i<=$count;$i++){
+				echo "<td>" . $row[$i] . "</td>";
+			}
+        	echo "</tr>";
+        }
+        echo '</table>';
+		}
+		else{
+			echo '<table border="1"><thead>';
+			echo '<td><b>Company</b></td>';
+			echo '</thead>';
+			 echo '</table>';
+		
+		}
+
+    }
+	else
 
     if ($hasRequiredFields) {
 

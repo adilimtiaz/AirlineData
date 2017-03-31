@@ -288,5 +288,7 @@ values('T019', 'F005', '2017-04-10', '0004');
 insert into Ticket
 values('T020', 'F006', '2017-04-11', '0009');
 
+commit;
+
 
 
