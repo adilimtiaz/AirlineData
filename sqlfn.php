@@ -16,7 +16,7 @@ function dbDisconn($dbConn) {
 }
 
 function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
-	echo "<br>running ".$cmdstr."<br>";
+	//echo "<br>running ".$cmdstr."<br>";
 	global $db_conn, $success;
 	$statement = OCIParse($db_conn, $cmdstr); //There is a set of comments at the end of the file that describe some of the OCI specific functions and how they work
 

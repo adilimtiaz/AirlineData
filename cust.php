@@ -195,9 +195,9 @@ p {
 			foreach($_POST['check_list'] as $check) {
 				$selected.=(string)$check.",";
 			}
-			echo "Fuck you $selected" ;
+			//echo "Fuck you $selected" ;
 			$selected=chop($selected,",");
-			echo "Fuck your mom $selected";
+			//echo "Fuck your mom $selected";
 			$query= "select fno,dateflight,".$selected." from ticket group by fno,dateflight";
 		}
 		
@@ -249,7 +249,7 @@ p {
 		echo '<td><b>Date</b></td>';
 		
 			foreach($_POST['check_list'] as $check) {
-				echo $check;
+				//echo $check;
 				if($check=="AVG(price)"){
 			    echo '<td><b>Average Ticket Price</b></td>';
 				$count++;
@@ -279,7 +279,7 @@ p {
         while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
         	echo "<tr align = 'center'>";
 			for($i=0;$i<=$count+1;$i++){
-				echo "<td>" . $row[$i] . "</td>";
+				echo "<td>" . substr($row[$i],0,8) . "</td>";
 			}
         	echo "</tr>";
         }
