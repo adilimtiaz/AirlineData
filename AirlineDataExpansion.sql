@@ -1367,6 +1367,7 @@ insert into Flight values('F110', '2016-07-30', '21:39', 'A113', '2016-07-31', '
 insert into Flight values('F110', '2016-08-04', '21:31', 'A113', '2016-08-05', '21:37', 'A112', '106');
 insert into Flight values('F110', '2016-08-09', '21:30', 'A113', '2016-08-10', '21:32', 'A112', '114');
 insert into Flight values('F110', '2016-08-14', '21:34', 'A113', '2016-08-15', '21:33', 'A112', '117');
+insert into Flight values('F999', '2016-08-14', '21:34', 'A113', '2016-08-15', '21:33', 'A112', '119');
 insert into CrewAssn values('100', 'F104', '2016-07-10');
 insert into CrewAssn values('100', 'F109', '2016-07-10');
 insert into CrewAssn values('100', 'F106', '2016-07-15');

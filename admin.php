@@ -48,7 +48,7 @@ p {
         <tr>
                 <td>Model Number</td>
                 <td><label for="input-id" class="sr-only">000</label>
-                <input type="input" maxlength="3" name="model" required placeholder="000" id="input-id"></td>
+                <input type="input" maxlength="3" name="model" placeholder="000" id="input-id"></td>
             </tr>
         <tr>
                 <td><button type="submit" value="submit" name="viewModelInfo" class="btn btn-primary btn-md">View</button></td>
@@ -248,7 +248,7 @@ p {
     }
     if (array_key_exists('viewModelInfo', $_POST)) {
         $model = "'".$_POST['model']."'";
-        if ($model != "'")
+	if ($model === "''")		$model = 'model';
             $hasRequiredFields = true;
         $query = "select * from modelinfo where model = $model";
     }
