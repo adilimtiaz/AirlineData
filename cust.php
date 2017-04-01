@@ -44,7 +44,7 @@ p {
 	    <tr>
              <td><p>Departure Airport</td>
                 <td><label for="input-id" class="sr-only">A000</label>
-                <input type="input" name="depacode" placeholder="A000" id="input-id"></td>
+                <input type="input" maxlength="4" name="depacode" placeholder="A000" id="input-id"></td>
             </tr>
 
 
@@ -56,7 +56,7 @@ p {
 	    <tr>
                 <td><p>Arrival Airport</td>
                 <td><label for="input-id" class="sr-only">A000</label>
-                <input type="input" name="arracode" placeholder="A000" id="input-id"></td>
+                <input type="input" maxlength="4" name="arracode" placeholder="A000" id="input-id"></td>
             </tr>
             <tr>
                 <td><p>Arrival Date</td>
@@ -73,7 +73,7 @@ p {
 	    <tr>
                 <td><p>Flight Number</td>
                 <td><label for="input-id" class="sr-only">F000</label>
-                <input type="input" name="fno" placeholder="F000" id="input-id"></td>
+                <input type="input" maxlength="4" name="fno" placeholder="F000" id="input-id"></td>
             </tr>
             <tr>
                 <td><p>Departure Date</td>
@@ -164,12 +164,12 @@ p {
 	    <tr>
                 <td><p>Ticket ID</td>
                 <td><label for="input-id" class="sr-only">T001</label>
-                <input type="input" name="tid" placeholder="T001" id="input-id"></td>
+                <input type="input" maxlength="4" name="tid" placeholder="T001" id="input-id"></td>
             </tr>
 	    <tr>
                 <td><p>Passenger ID</td>
                 <td><label for="input-id" class="sr-only">0001</label>
-                <input type="input" name="pid" placeholder="0001" id="input-id"></td>
+                <input type="number" name="pid" placeholder="0001" id="input-id"></td>
             </tr>
             <tr>
                 <td><button type="submit" value="submit" name="searchResSubmit" class="btn btn-primary btn-md">Search</button></td>

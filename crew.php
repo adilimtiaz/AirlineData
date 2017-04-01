@@ -49,7 +49,7 @@ p {
 	    <tr>
                 <td>Employee ID</td>
                 <td><label for="input-id" class="sr-only">0001</label>
-                <input type="input" name="eid" required placeholder="0001" id="input-id"></td>
+                <input type="number" name="eid" required placeholder="0001" id="input-id"></td>
             </tr>
             <tr>
                 <td><button type="submit" value="submit" name="searchFltAssnSubmit" class="btn btn-primary btn-md">Search</button></td>
@@ -66,7 +66,7 @@ p {
 	    <tr>
                 <td>Flight Number</td>
                 <td><label for="input-id" class="sr-only">F000</label>
-                <input type="input" name="fno" required placeholder="F000" id="input-id"></td>
+                <input type="input" maxlength="4" name="fno" required placeholder="F000" id="input-id"></td>
             </tr>
             <tr>
                 <td>Departure Date</td>

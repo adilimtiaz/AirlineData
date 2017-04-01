@@ -40,26 +40,6 @@ p {
 
 <tr valign="top"><td width="40%">
 <div class="container">
-<div id="editCapacity">
-    <h3>Edit Model Capacity</h3>
-    <form method="POST" action= <?php __FILE__ ?> >
-        <table>
-        <tr>
-                <td>Model Number</td>
-                <td><label for="input-id" class="sr-only">000</label>
-                <input type="input" name="model" required placeholder="000" id="input-id"></td>
-            </tr>
-        <tr>
-                <td>New Capacity</td>
-                <td><label for="input-id" class="sr-only">000</label>
-                <input type="input" name="capacity" required placeholder="000" id="input-id"></td>
-            </tr>
-        <tr>
-                <td><button type="submit" value="submit" name="editCapacitySubmit" class="btn btn-primary btn-md">Edit</button></td>
-            </tr>
-        </table>
-    </form>
-</div>
 
 <div id="viewModelInfo">
     <h3>View Model Info</h3>
@@ -68,7 +48,7 @@ p {
         <tr>
                 <td>Model Number</td>
                 <td><label for="input-id" class="sr-only">000</label>
-                <input type="input" name="model" required placeholder="000" id="input-id"></td>
+                <input type="input" maxlength="3" name="model" required placeholder="000" id="input-id"></td>
             </tr>
         <tr>
                 <td><button type="submit" value="submit" name="viewModelInfo" class="btn btn-primary btn-md">View</button></td>
@@ -77,6 +57,26 @@ p {
     </form>
 </div>
 
+<div id="editCapacity">
+    <h3>Edit Model Capacity</h3>
+    <form method="POST" action= <?php __FILE__ ?> >
+        <table>
+        <tr>
+                <td>Model Number</td>
+                <td><label for="input-id" class="sr-only">000</label>
+                <input type="input" maxlength="3" name="model" required placeholder="000" id="input-id"></td>
+            </tr>
+        <tr>
+                <td>New Capacity</td>
+                <td><label for="input-id" class="sr-only">000</label>
+                <input type="number" name="capacity" required placeholder="000" id="input-id"></td>
+            </tr>
+        <tr>
+                <td><button type="submit" value="submit" name="editCapacitySubmit" class="btn btn-primary btn-md">Edit</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 <div id="viewModelInfoByCompany">
     <h3>View Model Info By Company</h3>
@@ -118,7 +118,7 @@ p {
         <tr>
                 <td>Flight No.</td>
                 <td><label for="input-id" class="sr-only">F000</label>
-                <input type="input" name="fno" required placeholder="F000" id="input-id"></td>
+                <input type="input" maxlength="4" name="fno" required placeholder="F000" id="input-id"></td>
             </tr>
         <tr>
                 <td>Departure Date</td>
@@ -132,7 +132,7 @@ p {
         <tr>
                 <td>Departure Airport</td>
                 <td> <label for="input-id" class="sr-only">A000</label>
-                <input type="input" name="depacode" required placeholder="A000" id="input-id"></td>
+                <input type="input" maxlength="4" name="depacode" required placeholder="A000" id="input-id"></td>
             </tr>
         <tr>
                 <td>Arrival Date</td>
@@ -145,12 +145,12 @@ p {
         <tr>
                 <td>Arrival Airport</td>
                 <td><label for="input-id" class="sr-only">A000</label>
-                <input type="input" name="arracode" required placeholder="A000" id="input-id"></td>
+                <input type="input" maxlength="4" name="arracode" required placeholder="A000" id="input-id"></td>
             </tr>
         <tr>
                 <td>Aircraft ID</td>
                 <td><label for="input-id" class="sr-only">001</label>
-                <input type="input" name="regno" required placeholder="001" id="input-id"></td>
+                <input type="input" maxlength="5" name="regno" required placeholder="00001" id="input-id"></td>
             </tr>
             <tr>
                 <td><button type="submit" value="submit" name="addFlightSubmit" class="btn btn-primary btn-md">Add</button></td>
@@ -167,7 +167,7 @@ p {
         <tr>
                 <td>Flight No.</td>
                 <td><label for="input-id" class="sr-only">F000</label>
-                <input type="input" name="fno" required placeholder="F000" id="input-id"></td>
+                <input type="input" maxlength="4" name="fno" required placeholder="F000" id="input-id"></td>
             </tr>
         <tr>
                 <td>Departure Date</td>
@@ -328,7 +328,7 @@ if (array_key_exists('purchaseAllFlights', $_POST)) {
         echo '<td><b>Company</b></td>';
         
             foreach($_POST['check_list'] as $check) {
-                echo $check;
+                //echo $check;
                 if($check=="AVG(capacity)"){
                 echo '<td><b>Average Capacity</b></td>';
                 $count++;
