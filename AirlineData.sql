@@ -28,8 +28,8 @@ CREATE TABLE Airport_a
 
 CREATE TABLE ModelInfo
 	(model CHAR(3),
-            capacity INTEGER,
-			company CHAR(20),
+        capacity INTEGER check (capacity > 0 and capacity < 1000),
+	company CHAR(20),
 	PRIMARY KEY (model));
 
 CREATE TABLE AirplaneModel

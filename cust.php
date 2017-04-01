@@ -63,11 +63,6 @@ p {
                 <td><input type="date" name="aDate"></td>
             </tr>
             <tr>
-                <td><p>Number of Passengers</td>
-                <td><label for="input-id" class="sr-only">000</label>
-                <input type="number" name="numPass" placeholder="000" id="input-id"></td>
-            </tr>
-            <tr>
                 <td><button type="submit" value="submit" name="searchDateSubmit" class="btn btn-primary btn-md">Search</button></td>
             </tr>
         </table>
@@ -196,7 +191,6 @@ p {
 		$depacode = "'".$_POST['depacode']."'";
 		$aDate = "'".strtoupper(date('Y-m-d', strtotime($_POST['aDate'])))."'";
 		$arracode = "'".$_POST['arracode']."'";
-		$numPass = "'".$_POST['numPass'];
 		if ($dDate === "'1970-01-01'")	$dDate = 'dateflight'; 		else $hasAtLeastOneField = true;
 		if ($depacode === "''")		$depacode = 'depacode';		else $hasAtLeastOneField = true;
 		if ($aDate === "'1970-01-01'")	$aDate = 'arrdate';		else $hasAtLeastOneField = true;
